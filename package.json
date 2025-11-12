@@ -2,7 +2,7 @@
     "name": "focus",
     "displayName": "Focus",
     "description": "Help you focus on the code you are editing by highlighting relevant sections.",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "publisher": "QuanLi",
     "author": {
         "name": "Quan Li"
