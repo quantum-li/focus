@@ -1,13 +1,11 @@
 {
     "name": "focus",
     "displayName": "Focus",
-    "description": "Help you focus the code.Highlight the lines/code block/indent you are editing.",
-    "version": "0.2.0",
+    "description": "Help you focus on the code you are editing by highlighting relevant sections.",
+    "version": "0.4.0",
     "publisher": "QuanLi",
     "author": {
-        "email": "lee@leezw.net",
-        "name": "Quan Li",
-        "url": "https://leezw.net"
+        "name": "Quan Li"
     },
     "icon":"images/logo.png",
     "license": "SEE LICENSE IN LICENSE",
@@ -29,28 +27,20 @@
         "multi-root ready"
     ],
     "bugs": {
-        "url":"https://github.com/mzzw/focus/issues",
+        "url":"https://github.com/quantum-li/focus/issues",
         "email": "lee@leezw.net"
     },
-    "homepage": "https://github.com/mzzw/focus/blob/master/README.md",
+    "homepage": "https://github.com/quantum-li/focus/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mzzw/focus.git"
+        "url": "https://github.com/quantum-li/focus.git"
     },
     "main": "./extension.js",
     "contributes": {
         "commands":[
             {
-                "command": "focus.swtichToLineLevel",
-                "title": "Focus: Switch To Line Level"
-            },
-            {
                 "command": "focus.switchToBlockLevel",
                 "title": "Focus: Switch To Block Level"
-            },
-            {
-                "command": "focus.switchToIndentLevel",
-                "title": "Focus: Switch To Indent Level"
             },
             {
                 "command": "focus.switchToFixedLevel",
@@ -59,51 +49,45 @@
             {
                 "command": "focus.turnOff",
                 "title": "Focus: Turn Off"
-            },
-            {
-                "command": "focus.toggleLevel",
-                "title": "Focus: Toggle Level"
             }
         ],
         "keybindings":[
-            {
-                "command": "focus.toggleLevel",
-                "key": "ctrl+alt+u"
-            }
         ],
         "configuration":[
             {
-                "title": "Focus configuration",
+                "title": "Focus",
                 "properties": {
                     "focus.opacity":{
                         "type":"string",
                         "default":"0.7",
                         "pattern": "^0\\.\\d{1}$",
-                        "description": "Opacity of the out of focus lines"
+                        "description": "Opacity of the out-of-focus lines"
                     },
                     "focus.highlightRange":{
                         "type":"string",
-                        "default":"fixed",
+                        "default":"block",
                         "enum": [
-                            "line",
                             "block",
-                            "indent",
                             "fixed",
                             "none"
                         ],
                         "description": "Highlight range",
                         "markdownEnumDescriptions": [
-                            "Only highlight current line",
-                            "Highlight code block with token",
-                            "Highlight lines by same indent with current line",
-                            "Fixed highlight `#focus.highlightLines#` lines",
-                            "Not highlight any code"
+                            "Highlight code block within braces",
+                            "Fixed highlight of `#focus.highlightLines#` lines",
+                            "Do not highlight any code"
                         ]
                     },
                     "focus.highlightLines":{
                         "type":"integer",
                         "default":5,
-                        "markdownDescription":"This configuration only useful when `#focus.highlightRange#` set to *fixed* .this mean how many lines will be highlight."
+                        "minimum": 1,
+                        "markdownDescription":"This configuration is only useful when `#focus.highlightRange#` is set to *fixed*. This means how many lines will be highlighted."
+                    },
+                    "focus.autoMatchLevel":{
+                        "type":"integer",
+                        "default":-1,
+                        "markdownDescription":"Auto match level for block modes. Positive numbers (1,2,3...) search from outermost to inner, negative numbers (-1,-2,-3...) search from cursor position outward."
                     }
                 }
             }

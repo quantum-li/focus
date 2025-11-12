@@ -1,56 +1,54 @@
 # Focus
 
-[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/QuanLi.focus.svg)](https://marketplace.visualstudio.com/items?itemName=QuanLi.focus) [![Installs](https://vsmarketplacebadge.apphb.com/installs/QuanLi.focus.svg)](https://marketplace.visualstudio.com/items?itemName=QuanLi.focus) [![Rating](https://vsmarketplacebadge.apphb.com/rating/QuanLi.focus.svg)](https://marketplace.visualstudio.com/items?itemName=QuanLi.focus)
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/QuanLi.focus)](https://marketplace.visualstudio.com/items?itemName=QuanLi.focus) [![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/QuanLi.focus)
+](https://marketplace.visualstudio.com/items?itemName=QuanLi.focus)
 
-Highlight code lines/code blcok what you are focus on.
+Highlight code you are focused on.
 
 ![Usage](images/usage01.png)
 
 ## Features
 
-* Highlight current line.
-* Highlight fixed configuration numbers of lines.
-* Highlight lines by indent.
-* Highlight code block.
+* Highlight some lines around the cursor, and control how many lines.
+* Highlight some lines that are wrapped in "{}", and control the level of "{}".
 
-## Usages
+## Usage
 
-* Just install it.
-* We provide commands and statusbar button that help you quickly change level.
-
-![Usage](images/usage02.png)
-
+* Install it.
 
 ## Configuration
 
-Set the level by json or UI:
+Set how your code should be highlighted:
 
 ``` json
-"focus.highlightRange":"line"   //Highlight current line
-"focus.highlightRange":"block"  //Highlight code block which range by `{` and `}`
-"focus.highlightRange":"indent" //Highlight lines by indent
-"focus.highlightRange":"fixed"  //Highlight line counts by configuration
+"focus.highlightRange":"block"  //Highlight code block which is ranged by `{` and `}`
+"focus.highlightRange":"fixed"  //Highlight line count by configuration
+"focus.highlightRange":"none"   //Disable highlight
 ```
 
-When the level set to *fixed*,configurate how many line to highlight:
+When set to *block*, the configuration below controls the level of "{}":
+
+``` json
+"focus.autoMatchLevel":-1
+```
+
+When the level is set to *fixed*, configure how many lines to highlight:
 
 ``` json
 "focus.highlightLines":5
 ```
 
-Configurate opacity:
+Configure opacity:
 
 ``` json
 "focus.opacity":0.7 //number between (0,1)
 ```
 
-![Usage](images/usage03.png)
-
 ## Change Log
 See Change Log [here](CHANGELOG.md)
 
 ## Issues
-Submit the [issues](https://github.com/mzzw/focus/issues) if you find any bug or have any suggestion.
+Submit the [issues](https://github.com/quantum-li/focus/issues) if you find any bug or have any suggestions.
 
-## Contribution
-Fork the [repo](https://github.com/mzzw/focus) and submit pull requests.
+## Contributing
+Fork the [repo](https://github.com/quantum-li/focus) and submit pull requests.
