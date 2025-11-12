@@ -124,14 +124,41 @@ function activate() {
                 }
             }
 
-            // 找到第level层的花括号对
-            let targetPair = null;
+            // 找到光标位置所在的所有有效花括号对
+            let validPairs = [];
             for (let pair of bracePairs) {
-                if (pair.level === level && pair.end &&
+                if (pair.end &&
                     position.isAfterOrEqual(pair.start) &&
                     position.isBeforeOrEqual(pair.end)) {
+                    validPairs.push(pair);
+                }
+            }
+
+            if (validPairs.length === 0) {
+                return new vscode.Position(type === ROLL_ABOVE ? 0 : activeEditor.document.lineCount, 0);
+            }
+
+            // 降级策略：取实际层级和设置层级的最小值
+            // 找到最接近请求层级的有效花括号对
+            let targetPair = null;
+            let requestedLevel = level;
+
+            // 首先尝试找到精确匹配的层级
+            for (let pair of validPairs) {
+                if (pair.level === requestedLevel) {
                     targetPair = pair;
                     break;
+                }
+            }
+
+            // 如果没有精确匹配，找到最接近但不超过请求层级的最大层级
+            if (!targetPair) {
+                let maxValidLevel = 0;
+                for (let pair of validPairs) {
+                    if (pair.level <= requestedLevel && pair.level > maxValidLevel) {
+                        maxValidLevel = pair.level;
+                        targetPair = pair;
+                    }
                 }
             }
 
